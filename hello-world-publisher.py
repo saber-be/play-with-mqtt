@@ -20,7 +20,7 @@ for i in range (RANGE):
     data = "{} [{}]".format(MESSAGE, i+1)
     message = {"message" : data}
     client.publish(TOPIC, json.dumps(message), 1) 
-    print(f"Published: 'f{json.dumps(message)}' to the topic: '{TOPIC}'")
+    print(f"Published: '{json.dumps(message)}' to the topic: '{TOPIC}'")
     t.sleep(0.1)
 print('Publish End')
 client.disconnect()
