@@ -6,20 +6,19 @@ from mqttbrokers.paho_client import PAHOClient
 
 
 def on_message(msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+    print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
 
 def run():
     TOPIC = "test/testing"
-    
-    client = AWSIoTV1Client()
+    # uncomment the following line to use AWSIoTV1Client
+    # client = AWSIoTV1Client()
     # uncomment the following line to use AWSIoTV2Client
-    client = AWSIoTV2Client()
+    # client = AWSIoTV2Client()
     # uncomment the following line to use PAHOClient
     client = PAHOClient()
     client.setup()
     client.connect()
-    client.subscribe(TOPIC)
-    client.callback(on_message)
+    client.subscribe(TOPIC,on_message)
     client.loop_forever()
 
 
