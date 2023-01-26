@@ -24,3 +24,14 @@ class PAHOClient(MQTT_CLIENT):
 
     def publish(self,topic:str,payload:str, QoS: int = 0):
         self.client.publish(topic, payload=payload, qos=QoS) 
+
+    def subscribe(self, topic, QoS=1, options=None, properties=None):
+        self.client.subscribe(topic, qos=QoS)
+
+    def callback(self, callback: callable):
+        def on_message(client, userdata, msg):
+            callback(msg)
+        self.client.on_message = on_message
+
+    def loop_forever(self, timeout: float = 1.0):
+        return self.client.loop_forever(timeout)

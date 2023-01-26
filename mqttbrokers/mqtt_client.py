@@ -18,3 +18,8 @@ class MQTT_CLIENT(ABC):
     def subscribe(self, topic, QoS=1, options=None, properties=None):
         pass
 
+    def callback(self, callback: callable):
+        pass
+
+    def loop_forever(self, timeout: float = 1.0):
+        pass
